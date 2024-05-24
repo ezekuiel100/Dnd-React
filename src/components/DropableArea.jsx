@@ -3,7 +3,16 @@ function DropableArea({ children }) {
     e.preventDefault();
     let id = e.dataTransfer.getData("text");
     let el = document.querySelector(`#${id}`);
-    e.target.append(el);
+
+    const isNonDropable = e.target.closest(".non-dropable");
+
+    if (isNonDropable) {
+      return;
+    }
+
+    if (el) {
+      e.target.append(el);
+    }
   }
 
   function handleDragOver(e) {
