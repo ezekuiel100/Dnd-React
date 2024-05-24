@@ -1,15 +1,10 @@
-import { useContext } from "react";
-import { DragContext } from "../App";
-
 function Draggable({ children }) {
-  const { setDragged } = useContext(DragContext);
-
   function handleDragStart(e) {
-    setDragged(e.target);
+    e.dataTransfer.setData("text/plain", e.target.id);
   }
 
   return (
-    <div draggable onDragStart={handleDragStart}>
+    <div draggable onDragStart={handleDragStart} id="draggable">
       {children}
     </div>
   );

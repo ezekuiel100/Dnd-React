@@ -1,12 +1,9 @@
-import { useContext } from "react";
-import { DragContext } from "../App";
-
 function DropableArea({ children }) {
-  const { dragged } = useContext(DragContext);
-
   function handleDrop(e) {
     e.preventDefault();
-    e.target.append(dragged);
+    let id = e.dataTransfer.getData("text");
+    let el = document.querySelector(`#${id}`);
+    e.target.append(el);
   }
 
   function handleDragOver(e) {
