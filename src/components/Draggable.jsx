@@ -13,6 +13,7 @@ function Draggable({ children }) {
       onDragStart={handleDragStart}
       className="non-dropable"
       id={`${id}`}
+      data="draggable"
     >
       {children}
     </div>
