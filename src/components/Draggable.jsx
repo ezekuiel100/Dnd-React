@@ -14,6 +14,7 @@ function Draggable({ children }) {
       className="non-dropable"
       id={`${id}`}
       data="draggable"
+      style={{ display: "inline-block" }}
     >
       {children}
     </div>

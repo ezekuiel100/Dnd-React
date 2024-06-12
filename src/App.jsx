@@ -1,20 +1,12 @@
-import Index from "./Index";
-import DropableArea from "./components/DropableArea";
+import AreaOne from "../tests/AreaOne";
 
 function App() {
   return (
-    <>
-      <Index />
-      <DropableArea>
-        <div style={{ background: "blue", width: "400px", height: "400px" }}>
-          {/* <Index /> */}
-        </div>
-        <div
-          style={{ background: "green", width: "400px", height: "400px" }}
-          data="dropableArea"
-        ></div>
-      </DropableArea>
-    </>
+    <div style={{ display: "flex", gap: "15px" }}>
+      <AreaOne />
+      <AreaOne />
+      <AreaOne />
+    </div>
   );
 }
 
