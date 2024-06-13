@@ -4,7 +4,7 @@ import "./style.css";
 function Item() {
   return (
     <Draggable>
-      <div className="item"></div>
+      <div className="item">bom dia</div>
     </Draggable>
   );
 }

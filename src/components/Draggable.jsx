@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 
-function Draggable({ children }) {
+function Draggable({ children, onDrag,onDragOver , onDragEnter }) {
   const id = `dragable-${uuidv4()}`;
 
   function handleDragStart(e) {
@@ -11,10 +11,13 @@ function Draggable({ children }) {
     <div
       draggable
       onDragStart={handleDragStart}
+      onDrag={onDrag}
+      onDragOver={onDragOver}
+      onDragEnter={onDragEnter}
       className="non-dropable"
       id={`${id}`}
       data="draggable"
-      style={{ display: "inline-block" }}
+      style={{ display: "inline-block", fontSize: "1rem" }}
     >
       {children}
     </div>
