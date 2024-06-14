@@ -16,7 +16,6 @@ function Draggable({ children, onDrag, onDragOver, onDragEnter }) {
       onDragEnter={onDragEnter}
       className="non-dropable "
       id={`${id}`}
-      style={{ display: "inline-block", fontSize: "1rem" }}
     >
       {children}
     </div>

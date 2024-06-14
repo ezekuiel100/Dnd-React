@@ -20,12 +20,7 @@ function DropableArea({ children, data }) {
   }
 
   return (
-    <div
-      data={data}
-      onDragOver={handleDragOver}
-      onDrop={handleDrop}
-      style={{ display: "inline-block", fontSize: "0" }}
-    >
+    <div data={data} onDragOver={handleDragOver} onDrop={handleDrop}>
       {children}
     </div>
   );
