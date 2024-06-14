@@ -1,4 +1,4 @@
-function DropableArea({ children }) {
+function DropableArea({ children, data }) {
   function handleDrop(e) {
     e.preventDefault();
     let id = e.dataTransfer.getData("text");
@@ -21,6 +21,7 @@ function DropableArea({ children }) {
 
   return (
     <div
+      data={data}
       onDragOver={handleDragOver}
       onDrop={handleDrop}
       style={{ display: "inline-block", fontSize: "0" }}

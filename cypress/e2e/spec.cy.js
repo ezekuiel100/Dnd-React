@@ -1,40 +1,42 @@
-describe("template spec", () => {
-  it("Drag and Drop", () => {
+describe("Drag and Drop", () => {
+  it("should drag and drop an item", () => {
     cy.visit("http://localhost:5173/");
 
     const dataTransfer = new DataTransfer();
 
-    // Dispara o evento dragstart no elemento arrastável
-    cy.get("[data='draggable']").trigger("dragstart", {
-      dataTransfer,
-      force: true,
-    });
+    const testCase = [
+      { Draggable: "#draggable", DropableArea: "#dropableArea2" },
+      { Draggable: "#draggable2", DropableArea: "#dropableArea3" },
+      { Draggable: "#draggable3", DropableArea: "#dropableArea2" },
+      { Draggable: "#draggable", DropableArea: "#dropableArea" },
+      { Draggable: "#draggable2", DropableArea: "#dropableArea" },
+      { Draggable: "#draggable3", DropableArea: "#dropableArea" },
+      { Draggable: "#draggable", DropableArea: "#dropableArea2" },
+      { Draggable: "#draggable2", DropableArea: "#dropableArea2" },
+      { Draggable: "#draggable3", DropableArea: "#dropableArea3" },
+      { Draggable: "#draggable", DropableArea: "#dropableArea3" },
+      { Draggable: "#draggable2", DropableArea: "#dropableArea3" },
+      { Draggable: "#draggable3", DropableArea: "#dropableArea3" },
+    ];
 
-    // Simula o movimento do mouse sobre o elemento de destino
-    cy.get("[data='dropableArea']")
-      .trigger("dragenter", {
-        dataTransfer,
-        force: true,
-      })
-      .trigger("dragover", {
-        dataTransfer,
-        force: true,
+    testCase.forEach(({ Draggable, DropableArea }) => {
+      // Simula o evento dragstart no elemento arrastável
+      cy.get(Draggable).trigger("mousedown", { which: 1 });
+      cy.get(Draggable).trigger("dragstart", { dataTransfer });
+
+      // Simula o movimento do mouse sobre o elemento de destino
+      cy.get(DropableArea).trigger("dragenter", { dataTransfer });
+      cy.get(DropableArea).trigger("dragover", { dataTransfer });
+
+      // Solta o elemento no alvo
+      cy.get(DropableArea).trigger("drop", { dataTransfer });
+      cy.get(Draggable).trigger("dragend", { dataTransfer });
+      cy.get(Draggable).trigger("mouseup");
+
+      // Verifica se o elemento arrastado agora está dentro do elemento de destino
+      cy.get(DropableArea).within(() => {
+        cy.get(Draggable).should("exist");
       });
-
-    // Solta o elemento no alvo
-    cy.get("[data='dropableArea']")
-      .trigger("drop", {
-        dataTransfer,
-        force: true,
-      })
-      .trigger("dragend", {
-        dataTransfer,
-        force: true,
-      });
-
-    // Verifica se o elemento arrastado agora está dentro do elemento de destino
-    cy.get("[data='dropableArea']").within(() => {
-      cy.get("[data='draggable']").should("exist");
     });
   });
 });

@@ -1,11 +1,9 @@
-import AreaOne from "../tests/AreaOne";
+import Container from "../tests/Container";
 
 function App() {
   return (
     <div style={{ display: "flex", gap: "15px" }}>
-      <AreaOne />
-      <AreaOne />
-      <AreaOne />
+      <Container />
     </div>
   );
 }
